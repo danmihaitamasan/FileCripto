@@ -1,0 +1,57 @@
+﻿@model DataAccess.Models.UserProfileModel
+
+@{
+    ViewData["Title"] = "UserProfile";
+}
+
+<h1 align="center">Profile</h1>
+
+
+<div class="row2">
+    <hr />
+    <div class="col-xs-6">
+        <dl class="row1">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dd class="col-sm-10">
+
+                <form asp-action="EditUser" asp-route-id="@Model?.UserId" method="get">
+                    <div>
+                        <button class="btn btn-primary">Edit your profile</button>
+                    </div>
+                </form>
+                <form asp-action="DeleteUser" asp-route-id="@Model?.UserId" method="get">
+                    <div>
+                        <button class="btn btn-secondary">Delete your profile</button>
+                    </div>
+                </form>
+            </dd>
+        </dl>
+    </div>
+</div>
+<div>
+
+    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+</div>

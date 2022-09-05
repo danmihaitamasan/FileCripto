@@ -1,0 +1,38 @@
+﻿@model CheckDownloadModel
+
+@{
+    ViewData["Title"] = "AddCode";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 align="center">Add Code</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CheckDownload" asp-controller="FileManager" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" hidden>
+                <label asp-for="FileId" class="control-label"></label>
+                <input asp-for="FileId" class="form-control" />
+                <span asp-validation-for="FileId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Download" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $.validator.setDefaults({ onkeyup: false });</script>
+}

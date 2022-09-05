@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FileCrypto</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication3.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" asp-append-version="true" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid" style="display:table-cell; vertical-align:middle; text-align:center;">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">
+                                <img src="~/logo/logo.png"
+                                     style="width: 100px; height: 100px; margin: -50px -10px -50px -10px;" />
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav flex-row">
+                        @if (CurrentUser.IsAuthenticated)
+                        {
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="FileManager" asp-action="OwnFiles">Receive File From User</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="FileManager" asp-action="AddFile">Send File To User</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="UserAccount" asp-action="Logout">Log out</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="UserAccount" asp-action="UserProfile" asp-route-id="@CurrentUser.UserId">Your Profile</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="UserAccount" asp-action="Login">Log in</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="UserAccount" asp-action="Register">Register</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+<script>
+    var urlParams = new URLSearchParams(location.search);
+    msg = urlParams.get('msg');
+    if (msg != null) {
+        alert(msg);
+    }
+</script>

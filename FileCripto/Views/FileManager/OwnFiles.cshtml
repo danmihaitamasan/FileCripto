@@ -1,0 +1,57 @@
+﻿@model List<File>
+
+@{
+    ViewData["Title"] = "Files Sent To You";
+}
+
+@if(Model.Count > 0)
+{
+    <h1 align="center">Files Sent To You</h1>
+    <table class="table" id="tabel">
+        <thead>
+            <tr>
+                <th>
+                    FileName
+                </th>
+                <th>
+                    Folder
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Folder)
+                        </td>
+                        <td>
+                            <form asp-controller="FileManager" asp-action="CheckDownload" asp-route-id="@item.FileId" method="get">
+                                <div>
+                                    <button class="btn btn-primary">Download</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                }
+        </tbody>
+
+    </table>
+            }
+            else
+            {
+                <h2>You have not received any files yet!</h2>
+            }
+
+    @section Scripts{
+    <script type="text/javascript" src="~/js/InfiniteScroll.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("scroll", function (e) {
+            infinite_scroll.InfinityScroll();
+        });
+    </script>
+   }
